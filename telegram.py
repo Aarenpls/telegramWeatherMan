@@ -26,9 +26,12 @@ def findIndex(index, location, stations):
 
 def printTemp(data, location, stations):
     indexForData = findIndex(0, location, stations)
-    tempToPrint = data["items"][0]["readings"][indexForData]["value"]
-    toPrint = ("Current temperature: " + str(tempToPrint) + chr(176) + "C")
-    return toPrint
+    try:
+        tempToPrint = data["items"][0]["readings"][indexForData]["value"]
+        toPrint = ("Current temperature: " + str(tempToPrint) + chr(176) + "C")
+        return toPrint
+    except:
+        return "Current temperature: Not available"
 
 def getUV():
     now = datetime.datetime.now()
@@ -190,7 +193,6 @@ def send_welcome(message):
     toPrint = location + "\n" + printTemp(data, location, stations) + "\n" + getUV() + "\n" + getForecast(area) + "\n" + getPSI(area)
     bot.reply_to(message, toPrint)
 
-"""
 @bot.message_handler(commands = ['changi'])
 def send_welcome(message):
     location = "Upper Changi Road North"
@@ -199,7 +201,6 @@ def send_welcome(message):
     area = "east"
     toPrint = location + "\n" + printTemp(data, location, stations) + "\n" + getUV() + "\n" + getForecast(area) + "\n" + getPSI(area)
     bot.reply_to(message, toPrint)
-"""
 
 @bot.message_handler(commands = ['westcoast'])
 def send_welcome(message):
