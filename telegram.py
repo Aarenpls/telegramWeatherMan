@@ -37,7 +37,18 @@ def getUV():
 
     with urllib.request.urlopen(currentDateTimeURL) as url:
         data = json.loads(url.read().decode())
-    toPrint = "Current UV Index: " + str(data["items"][0]["index"][0]["value"])
+    valueOfUV = data["items"][0]["index"][0]["value"]
+    toPrint = "Current UV Index: " + str(valueOfUV)
+    if valueOfUV < 3:
+        toPrint += " (Low)"
+    elif valueOfUV < 6:
+        toPrint += " (Moderate)"
+    elif valueOfUV < 8:
+        toPrint += " (High)"
+    elif valueOfUV < 11:
+        toPrint += " (Very high)"
+    else:
+        toPrint += " (EXTREME)"
     return toPrint
 
 def getForecast(area):
@@ -53,7 +64,18 @@ def getPSI(area):
     currentDateTimeURL = "https://api.data.gov.sg/v1/environment/psi?date_time=" + now.strftime("%Y") + "-" + now.strftime("%m") + "-" + now.strftime("%d") + "T" + now.strftime("%H") + "%3A" + now.strftime("%M") + "%3A" + now.strftime("%S")
     with urllib.request.urlopen(currentDateTimeURL) as url:
         data = json.loads(url.read().decode())
-    toPrint = "Current PSI reading: " + str(data["items"][0]["readings"]["psi_twenty_four_hourly"][area])
+    valueOfPSI = data["items"][0]["readings"]["psi_twenty_four_hourly"][area]
+    toPrint = "Current PSI reading: " + str(valueOfPSI)
+    if valueOfPSI < 51:
+        toPrint += " (Good)"
+    elif valueOfPSI < 101:
+        toPrint += " (Moderate)"
+    elif valueOfPSI < 201:
+        toPrint += " (Unhealthy)"
+    elif valueOfPSI < 301:
+        toPrint += " (Very unhealthy)"
+    else:
+        toPrint += " (This is bad...)"
     return toPrint
 
 @bot.message_handler(commands = ['start'])
@@ -204,4 +226,8 @@ def send_welcome(message):
     toPrint = location + "\n" + printTemp(data, location, stations) + "\n" + getUV() + "\n" + getForecast(area) + "\n" + getPSI(area)
     bot.reply_to(message, toPrint)
 
-bot.polling()
+while True:
+    try:
+        bot.polling()
+    except:
+        time.sleep(15)
