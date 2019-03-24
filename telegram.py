@@ -190,6 +190,7 @@ def send_welcome(message):
     toPrint = location + "\n" + printTemp(data, location, stations) + "\n" + getUV() + "\n" + getForecast(area) + "\n" + getPSI(area)
     bot.reply_to(message, toPrint)
 
+"""
 @bot.message_handler(commands = ['changi'])
 def send_welcome(message):
     location = "Upper Changi Road North"
@@ -198,6 +199,7 @@ def send_welcome(message):
     area = "east"
     toPrint = location + "\n" + printTemp(data, location, stations) + "\n" + getUV() + "\n" + getForecast(area) + "\n" + getPSI(area)
     bot.reply_to(message, toPrint)
+"""
 
 @bot.message_handler(commands = ['westcoast'])
 def send_welcome(message):
