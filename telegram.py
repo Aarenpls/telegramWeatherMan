@@ -3,7 +3,7 @@ import time
 import urllib.request, json
 import datetime
 
-bot_token = '808951815:AAEHHP271TDAib_Bo2IdPexCoXLqM8SnTj4'
+bot_token = '808951815:AAEHHP271TDAib_Bo2IdPexCoXLqM8SnTj4' # NOT THE ACTUAL TOKEN FOR OUR BOT
 bot = telebot.TeleBot(token = bot_token)
 
 def getTemp(location):
