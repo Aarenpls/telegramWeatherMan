@@ -1,6 +1,6 @@
 # WeatherMan
 <p><b>A simple telegram bot developed at HackNTU 2019</b></p>
-<p><b>Try it out on <a href="https://telegram.me/NutsTestBot">telegram</a>!</b></p>
+<p><b>Try it out on <a href="https://telegram.me/SgWeatherManBot">telegram</a>!</b></p>
 
 ## Inspiration
 When you get sick of googling for the weather and of navigating the sluggish NEA website, WeatherMan is here to help! Since Telegram is an extremely fast app and very commonly used, it is easier to access this information and share it immediately to your friends and family (or add it to a group for instant updates!).
