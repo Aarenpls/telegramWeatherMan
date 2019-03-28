@@ -1,8 +1,9 @@
 # WeatherMan
-__A simple telegram bot developed at HackNTU 2019__
+<p><b>A simple telegram bot developed at HackNTU 2019</b></p>
+<p><b>Try it out on <a href="https://telegram.me/NutsTestBot">telegram</a>!</b></p>
 
 ## Inspiration
-When you get sick of googling for the weather and of navigating the sluggish NEA website., WeatherMan is here to help! Since Telegram is an extremely fast app and very commonly used, it is easier to access this information and share it immediately to your friends and family (or add it to a group for instant updates!).
+When you get sick of googling for the weather and of navigating the sluggish NEA website, WeatherMan is here to help! Since Telegram is an extremely fast app and very commonly used, it is easier to access this information and share it immediately to your friends and family (or add it to a group for instant updates!).
 
 ## What it does
 Gives the current weather update (current temperature, UV index, PSI, and area forecast) at 16 specific locations as specified in data.gov.sg to everyone in a group, or directly via private messaging.
@@ -38,5 +39,3 @@ It is built using Python with the <a href="https://github.com/python-telegram-bo
 <li>Options to choose from 2, 6, 12, 24, or 96 hours forecasts</li>
 <li>An update button instead of constantly having to give the same commands</li>
 </ol>
-
-**NOTE: As of now, the telegram bot will not work unless there is a active server hosting the bot**
