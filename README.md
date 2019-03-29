@@ -10,7 +10,7 @@ Gives the current weather update (current temperature, UV index, PSI, and area f
 <p>These 4 indicators are especially important for social sports group (e.g. water sports, tennis, soccer), even so when there is an increasing trend of social networking platforms centered around sports. However, these 4 arguably most important indicators are located on different pages on NEA's app and website, making it user-unfriendly and annoying.</p>
 
 ## How we built it
-It is built using Python with the <a href="https://github.com/python-telegram-bot">python-telegram-bot API</a> and with <a href="https://data.gov.sg/dataset">Singapore's data.gov.sg API</a> for weather updates
+It is built using Python with the <a href="https://github.com/eternnoir/pyTelegramBotAPI">python-telegram-bot API</a> and with <a href="https://data.gov.sg/dataset">Singapore's data.gov.sg API</a> for weather updates
 
 ## Challenges we ran into
 <ol>
