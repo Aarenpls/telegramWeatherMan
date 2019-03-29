@@ -1,20 +1,19 @@
 import telebot
-import time
+from datetime import datetime, timedelta
 import urllib.request, json
-import datetime
 
 bot_token = '808951815:AAEHHP271TDAib_Bo2IdPexCoXLqM8SnTj4' # NOT THE ACTUAL TOKEN FOR OUR BOT
 bot = telebot.TeleBot(token = bot_token)
 
 def getTemp(location):
-    now = datetime.datetime.now()
-
-    currentDateTimeURL = "https://api.data.gov.sg/v1/environment/air-temperature?date_time=" + now.strftime("%Y") + "-" + now.strftime("%m") + "-" + now.strftime("%d") + "T" + now.strftime("%H") + "%3A" + now.strftime("%M") + "%3A" + now.strftime("%S")
+    utc_now = datetime.utcnow()
+    sg_now = utc_now + timedelta(hours=8)
+    currentDateTime = sg_now.strftime("%Y") + "-" + sg_now.strftime("%m") + "-" + sg_now.strftime("%d") + "T" + sg_now.strftime("%H") + "%3A" + sg_now.strftime("%M") + "%3A" + sg_now.strftime("%S")
+    currentDateTimeURL = "https://api.data.gov.sg/v1/environment/air-temperature?date_time=" + currentDateTime
 
     with urllib.request.urlopen(currentDateTimeURL) as url:
         data = json.loads(url.read().decode())
     return data
-    # print(data["metadata"])
 
 def findIndex(index, location, stations):
     for x in stations:
@@ -34,9 +33,10 @@ def printTemp(data, location, stations):
         return "Current temperature: Not available"
 
 def getUV():
-    now = datetime.datetime.now()
-
-    currentDateTimeURL = "https://api.data.gov.sg/v1/environment/uv-index?date_time=" + now.strftime("%Y") + "-" + now.strftime("%m") + "-" + now.strftime("%d") + "T" + now.strftime("%H") + "%3A" + now.strftime("%M") + "%3A" + now.strftime("%S")
+    utc_now = datetime.utcnow()
+    sg_now = utc_now + timedelta(hours=8)
+    currentDateTime = sg_now.strftime("%Y") + "-" + sg_now.strftime("%m") + "-" + sg_now.strftime("%d") + "T" + sg_now.strftime("%H") + "%3A" + sg_now.strftime("%M") + "%3A" + sg_now.strftime("%S")
+    currentDateTimeURL = "https://api.data.gov.sg/v1/environment/uv-index?date_time=" + currentDateTime
 
     with urllib.request.urlopen(currentDateTimeURL) as url:
         data = json.loads(url.read().decode())
@@ -55,16 +55,20 @@ def getUV():
     return toPrint
 
 def getForecast(area):
-    now = datetime.datetime.now()
-    currentDateTimeURL = "https://api.data.gov.sg/v1/environment/24-hour-weather-forecast?date_time=" + now.strftime("%Y") + "-" + now.strftime("%m") + "-" + now.strftime("%d") + "T" + now.strftime("%H") + "%3A" + now.strftime("%M") + "%3A" + now.strftime("%S")
+    utc_now = datetime.utcnow()
+    sg_now = utc_now + timedelta(hours=8)
+    currentDateTime = sg_now.strftime("%Y") + "-" + sg_now.strftime("%m") + "-" + sg_now.strftime("%d") + "T" + sg_now.strftime("%H") + "%3A" + sg_now.strftime("%M") + "%3A" + sg_now.strftime("%S")
+    currentDateTimeURL = "https://api.data.gov.sg/v1/environment/24-hour-weather-forecast?date_time=" + currentDateTime
     with urllib.request.urlopen(currentDateTimeURL) as url:
         data = json.loads(url.read().decode())
     toPrint = "Area forecast (6hrs): " + str(data["items"][0]["periods"][0]["regions"][area])
     return toPrint
 
 def getPSI(area):
-    now = datetime.datetime.now()
-    currentDateTimeURL = "https://api.data.gov.sg/v1/environment/psi?date_time=" + now.strftime("%Y") + "-" + now.strftime("%m") + "-" + now.strftime("%d") + "T" + now.strftime("%H") + "%3A" + now.strftime("%M") + "%3A" + now.strftime("%S")
+    utc_now = datetime.utcnow()
+    sg_now = utc_now + timedelta(hours=8)
+    currentDateTime = sg_now.strftime("%Y") + "-" + sg_now.strftime("%m") + "-" + sg_now.strftime("%d") + "T" + sg_now.strftime("%H") + "%3A" + sg_now.strftime("%M") + "%3A" + sg_now.strftime("%S")
+    currentDateTimeURL = "https://api.data.gov.sg/v1/environment/psi?date_time=" + currentDateTime
     with urllib.request.urlopen(currentDateTimeURL) as url:
         data = json.loads(url.read().decode())
     valueOfPSI = data["items"][0]["readings"]["psi_twenty_four_hourly"][area]
@@ -83,7 +87,7 @@ def getPSI(area):
 
 @bot.message_handler(commands = ['start'])
 def send_welcome(message):
-    bot.reply_to(message, "Welcome!")
+    bot.reply_to(message, "Harlow, how are you?")
 
 @bot.message_handler(commands = ['angmokio'])
 def send_welcome(message):
