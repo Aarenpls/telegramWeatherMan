@@ -1,6 +1,7 @@
 # WeatherMan
 <p><b>A simple telegram bot developed at HackNTU 2019</b></p>
 <p><b>Try it out on <a href="https://telegram.me/SgWeatherManBot">telegram</a>!</b></p>
+<p><b>Server hosted on <a href="https://www.pythonanywhere.com">pythonanywhere</a></b></p>
 
 ## What it does
 Gives the current weather update (current temperature, UV index, PSI, and area forecast) at 16 specific locations as specified in data.gov.sg to everyone in a group, or directly via private messaging.
