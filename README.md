@@ -4,7 +4,8 @@
 <p><b>Server hosted on <a href="https://www.pythonanywhere.com">pythonanywhere</a></b></p>
 
 ## What it does
-Gives the current weather update (current temperature, UV index, PSI, and area forecast) at 16 specific locations as specified in data.gov.sg to everyone in a group, or directly via private messaging.
+<p>Gives the current weather update (current temperature, UV index, PSI, and area forecast) at 16 specific locations as specified in data.gov.sg to everyone in a group, or directly via private messaging.</p>
+
 <p>These 4 indicators are especially important for social sports group (e.g. water sports, tennis, soccer), even so when there is an increasing trend of social networking platforms centered around sports. However, these 4 arguably most important indicators are located on different pages on NEA's app and website, making it user-unfriendly and annoying.</p>
 
 ## How we built it
@@ -30,6 +31,7 @@ It is built using Python with <a href="https://github.com/eternnoir/pyTelegramBo
 </ol>
 
 ## What's next for WeatherMan
+<p>This list contains (future) updates not done in the Hackathon itself</p>
 <ol>
   <li>Instant updates should any of the 4 metrics go beyond the "unhealthy" levels</li>
   <li><b>Done:</b> <s>Letting users geo-tag their location to return the closest station and its data</s></li>
