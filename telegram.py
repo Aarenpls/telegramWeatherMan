@@ -91,7 +91,7 @@ def getNearestStation(userLatitude, userLongitude):
     sg_now = utc_now + timedelta(hours=8)
     currentDateTime = sg_now.strftime("%Y") + "-" + sg_now.strftime("%m") + "-" + sg_now.strftime("%d") + "T" + sg_now.strftime("%H") + "%3A" + sg_now.strftime("%M") + "%3A" + sg_now.strftime("%S")
     currentDateTimeURL = "https://api.data.gov.sg/v1/environment/air-temperature?date_time=" + currentDateTime
-
+    global data
     with urllib.request.urlopen(currentDateTimeURL) as url:
         data = json.loads(url.read().decode())
 
@@ -114,44 +114,31 @@ def getNearestStation(userLatitude, userLongitude):
     return nearestStation
 
 def getNearestArea(location):
-    if location == "Ang Mo Kio Avenue 5":
-        return "central"
-    elif location == "Banyan Road":
-        return "west"
-    elif location == "Clementi Road":
-        return "west"
-    elif location == "East Coast Parkway":
-        return "east"
-    elif location == "Kim Chuan Road":
-        return "east"
-    elif location == "Marina Gardens Drive":
-        return "south"
-    elif location == "Nanyang Avenue":
-        return "west"
-    elif location == "Old Choa Chu Kang Road":
-        return "west"
-    elif location == "Pulau Ubin":
-        return "east"
-    elif location == "Scotts Road":
-        return "central"
-    elif location == "Sentosa":
-        return "south"
-    elif location == "Tuas South Avenue 3":
-        return "west"
-    elif location == "Upper Changi Road North":
-        return "east"
-    elif location == "West Coast Highway":
-        return "west"
-    elif location == "Woodlands Avenue 9":
-        return "north"
-    elif location == "Woodlands Road":
-        return "north"
-    else:
+    areaMapping = {
+    "Ang Mo Kio Avenue 5":"central",
+    "Banyan Road":"west",
+    "Clementi Road":"west",
+    "East Coast Parkway":"east",
+    "Kim Chuan Road":"east",
+    "Marina Gardens Drive":"south",
+    "Nanyang Avenue":"west",
+    "Old Choa Chu Kang Road":"west",
+    "Pulau Ubin":"east",
+    "Scotts Road":"central",
+    "Sentosa":"south",
+    "Tuas South Avenue 3":"west",
+    "Upper Changi Road North":"east",
+    "West Coast Highway":"west",
+    "Woodlands Avenue 9":"north",
+    "Woodlands Road":"north"}
+    try:
+        return areaMapping[location]
+    except:
         return "central"
 
 @bot.message_handler(commands = ['start', 'help'])
 def send_welcome(message):
-    msg = "This is a bot that tells the current weather." + "\n" + "Type /<AREA> to get that location's current weather." + " \U0001F60A \U0001F61D"
+    msg = "This bot tells the current weather at 16 specific weather stations specified by NEA." + "\n\n" + "Type / to see the list of available weather stations." + "\n\n" + "Alternatively, send your current location to get the nearest available weather station!"
     bot.reply_to(message, msg)
 
 @bot.message_handler(commands = ['angmokio'])
@@ -302,9 +289,7 @@ def send_welcome(message):
 def handle_location(message):
     userLatitude = message.location.latitude
     userLongitude = message.location.longitude
-    print(userLatitude, userLongitude)
     location = getNearestStation(userLatitude, userLongitude)
-    data = getTemp(location)
     stations = data["metadata"]["stations"]
     area = getNearestArea(location)
     toPrint = location + "\n" + printTemp(data, location, stations) + "\n" + getUV() + "\n" + getPSI(area) + "\n" + getForecast(area)
